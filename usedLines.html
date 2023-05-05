@@ -112,7 +112,6 @@ https://www.freeformatter.com/html-validator.html
 
 
 CSS 
-
 Syntax: selector{property: value;}
 *        Universal selector
 Element definition in html to be called i the css file:
@@ -177,20 +176,17 @@ Box management: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_bloc
       }
 
    Center vertically on a inline element (span): use "line-height" instead of only "height" 
-
    >>
    padding-top: 16px;
    padding-bottom: 16px;
    padding-left: 8px;
    padding-right: 8px; <<       could be replaced by:   >>padding: 16px 8px;<<
-
    
    >> margin: 0 auto;         set the box element with a specified width on the center of the page automatically
    max-width: NNNpx;       allows to resize the box or container to the navigator width if it's smaller than NNNpx
    display: flex;          makes the box a flex element, its content will resize as the container modifies
    box-shadow: 0 0 8px rgba(,255,3,.1);         applies a blur shadow on the box borders, https://developer.mozilla.org/es/docs/Web/CSS/box-shadow 
 
-   
    flex
       for elements:
          flex: 1                 sets flex-grow: 1, flex-shrink: 1, flex-basis: 0, or flex: 1 1 0; 
@@ -238,10 +234,8 @@ Box management: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_bloc
 Java
 
 "use strict";        prevents to assign values to a function without being declarated (var, let...), must be at the beginning of the script
-
 var, let, const XXX;       a variable (var, let or const) is declared with name "XXX", a declaration is always processed at the start of the function execution
 XXX = '...';         a variable named "XXX" is assigned ()=) to a value or function (...), an assignment is processed in the order it appears       
-
 var, let, const XXX = '...' ;      a variable (var, let or const) declared with name "XXX" is assigned (=) to a value or function (...)
 avoid coding like above, try to use >>one action - one line<<
 \n       inside a string "" it wil break into a new line the following strings
@@ -259,11 +253,23 @@ a != b;        different than
 all comparisons returns a boolean value (true-false)
 n = n + 5;     is the same than        n += 5
 const XXX = '...'         indicates that XXX can have only a value of "..." an it cannot be changed or re-declarated
+
 logical operators: 
 OR: a || b;       a chain of OR (a || b || c) returns the first truthy value or the last one if no truthy value is found.
 AND: a && b;      a chain of AND (a && b && c) returns the first falsy value or the last value if none were found.
-   a && b || c && d  is the same than (a && b) || (c && d)
-NOT: !a           returns the inverse boolean value of a.
+     a && b || c && d  is the same than (a && b) || (c && d), & has higher precedence.
+NOT: !a           returns the inverse boolean value of a. A double NOT (!!) returns the true boolean value. This operator has the higher precedence.
+
+if (condition) {
+   /* code to run if condition is true */
+ } else if (condition){
+   /* run some other code instead */
+ } else {
+   /* run some other code instead */
+ }                                        syntax of if and nested if.
+ 
+condition ? run this code : run this code instead        ternary operator, allows to write a simple if statement with less code
+
 switch(expression) {
    case x:
      // code block

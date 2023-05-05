@@ -1,0 +1,340 @@
+Disable sleep:
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+Enable sleep:
+sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
+
+
+Shell:  
+Open -> Win + U
+syntax -> prompt - command - option - argument ($ ls -F /data) separated by spaces
+ls     shows the files in the current directory
+ls -F     shows the type of file in the directory acoording to:
+    / indicates that this is a directory
+    @ indicates a link
+    * indicates an executable
+      without a symbol indicates that is a file
+      -t   shows items in alphabetical order
+ls -F -a     shows al the files including hidden ones
+
+Alt + Z      Activates lines wrap 
+Ctrl + c     Kills current process
+google-chrome f1.html         opens the f1 file on chrome
+
+fx --help    Shows help for fx
+man fx     Shows help too, to quit press Q
+
+
+pwd    point work directory
+
+cd file   changes the directory to the "file" location (file also can be a directory, must start with "/"), file must be inside the current directory, if cd executes without an argument, changes the directory to home directory
+cd ..     changes the directory location to the folder that contains the current directory (a level up in directories hierarchy), 
+   .      applied to a comand indicates current directory
+cd -      changes the directory location to the last defined directory (a step back)
+cd ~      changes the directory location to the home directory, also can add /file being this a file or a directory  (~ replaces /home/lz-dev)
+
+mkdir f1     creates a folder named f1 in the current directory
+mkdir f1 f2 f3    In this case, the line wil create 3 folders with name f1, f2 and f3.
+mkdir -p     creates nested subdirectories (folders within other folder)
+ls -FR       F shows items in the current location, R shows the subdirectories inside the current directory (also can be a directory: /file1/file2)
+ls -R        Works pretty similar to the previous command
+ls -r shows   item in reverse
+ls -l shows   items properties 
+
+
+nano n1.txt      creates a text file named "n1" in the current directory, also takes you to an editor to write in the new file
+touch n1.txt     creates an EMPTY text file named "n1" in the current directory. Useful when a program requires blank text files to work.
+rm n1.txt        deletes the text file in the current directory
+.txt .pdf .doc   file extensions are indications to be opened by the right software, the content inside them doesn't change if the extension changes.
+mv t1.txt t2.txt     changes the name of the file "t1" to "t2" in the current directory
+mv l1/t1.txt l1/t2.txt     changes the name of the file "t1" to "t2" in the l1 directory, l1 must be inside the current location
+mv l1/t1.txt .               changes the file location to the current location using the dot as second argument
+
+rm f1        deletes or removes pemanenty the f1 file in the current location (only works with files, no directories)
+rm -i        ask before delete
+rm -r -i     deletes or removes permanently a directory and all his content, -i for confirmation
+aa*.xx       wildcard (*): represents all the files whose name starts with aa and ends with .xx 
+*aa*bb.xx    all files starting with anything (*) followed by "aa", in those files that meets the previous condition, it will select all the files with any "bb.xx" after "aa" no matters what's between (*).
+a??.xx       wildcard (?): represents only one character in the file name, in this case, all the files with 3 character names that starts with "a" (a12.xx, an3.xx, a_b.xx)
+wc           word count, the ouput is: #lines #words #characters 
+wc *.xx      list all the files ending with .xx counting #lines #words #characters for each one, also prints a total
+wc -l f1       only counts the lines in the file f1 (or group of files)
+wc -l f1 > t1.txt       Prints the output in a .txt file, doesn't show anything in the screen, if "t1.txt" already exists, it wil be overwritten
+cat f1         prints the content of the file "f1" in the screen 
+sort f1           sort alphanumerically the lines in the file "f1"
+sort -n f1            sort numerically the lines in the file "f1"
+echo abc            prints abc
+echo abc >> t1.txt       if the file "t1" already exists, it will add the line "abc" to the bottom of the file
+head -n 5                takes the first 5 lines in the file
+tail -n 3                takes the last 3 lines in the file
+f1 | f2      Pipe (|): It tells the shell that we want to use the output of the command on the left (f1) as the input to the command on the right (f2)
+cut -d , -f 2 f1.txt         defines the delimitation (-d) with a coma (,) takes the 2nd column (-f 2) of the file "F1"
+uniq                    eliminate duplicated adjacent lines, if want to be used to eliminate al duplicated lines, first must be sorted
+
+
+
+HTML Files
+
+boilerplate    it can be understood as a code template
+<!DOCTYPE html>    indicates which version of HTML shall be used to render a website
+<html lang="en">   indicates the begining and the language of the content for accessibility, useful to be found by the browsers
+   <head>         contains the meta and info about the webpage rendering on browsers, its what the browser reads in a search 
+      <meta charset="utf-8">      ensures that the webpage will display special symbols and characters from different languages correctly in the browser, must be inside <head> since it's meta data
+      <title></title>          is the name displayed in the browsers results for searchings
+   </head> 
+   <body>       contains the information displayed to the user 
+   </body>
+</html> 
+
+<p></p>        Open and closing tags, in this case for a paragraph
+<img> 
+<img/>          this tags doesn't need a closing tag
+<h1>text</h1>        headings, defines the font size of the heading, "x" must be a numbre from 1 to 6 where 6 is the tiniest font size
+<strong>text</strong>         makes text bold, doesn't affect text within head size tags "<h1-6></h1-6>" or <head> objects
+<i>text</i>
+<em>text</em>        makes text italic, can be applied to headings
+<!--This is a comment, no visible in the webpage-->
+<a>text</a>         the text becomes a link
+<a href="WP">text</a>        the text becomes a link that goes to WP webpage, WP could be a link to an external website (absolute link) or a link to a page in our website (relative link). Relative links must start with /, it tells to the code to search from the curent directory (/MP)
+<img src="IM">       brings an image located in the IM link, which could be an absolute or a relative link    
+<img src="IM" alt="text 1">     the alt attribute gives a description to te IM image, if it cannot be loaded, the page will show "text 1" instead
+<br>        makes the text appear in a new line n the paragraph
+<ul> or <ol>
+   <li>Item 1</li>
+   <li>Item 2</li>
+   <li>Item 3</li>
+ </ul> or </ol>            Ordered lists (ol) or unordered lists (ul) whit ther items  
+
+!     in a .html blank file, it will wirite automatically a basic boilerplate (only in VSCode)
+https://www.freeformatter.com/html-validator.html        
+<link rel="stylesheet" href="styles.css">       links the html document to a CSS file (styles.css is the most used name for this file), href is the location and rel indicates the relationship between the html document and the CSS file, this must be inside <head>
+
+
+
+
+CSS 
+
+Syntax: selector{property: value;}
+*        Universal selector
+Element definition in html to be called i the css file:
+   <div>t1</div>        indicates that t1 is <div> type
+   <div class="c1">t1</div>        delcare that t1 is a type with class c1        
+   <div class="c1 c2 c3">t1</div>        delcare that t1 is a type with class c1, c2 and c3 (separeted by spaces) 
+   <div id="i1">t1</div>         delcare that t1 is a type with ID i1, unlike "class", a page cannot have more than one element with ID i1 (barely used)
+Calling elements in css:
+   .c1{color: green;}         indicates that all the c1 class elements will change their color to green
+   #i1{color: black;}         indicates that the element with ID i1 will change their color to black
+   .c1, .c2, .c3{color: red;}          change to red the color of various classes in one declarations
+   .c1.c2{}       select elements with class c1 AND c2 (chain selector), also can be used the # instead . for ID
+   .c1 .c3{}      selects elements with class c1 AND c3 only if c3 is inside of c1 (descendant combinator)
+   body{
+      width: 500px;
+      margin: 0 auto;
+   }              define a width for the content of the page in the center
+Color formats: 
+   Hexa (#RRGGBB)      #1100ff, to apply a transparency, add 2 more digits (#RRGGBBTT)
+   RGB (0-255)        rgb(100, 0, 127),  to apply a transparency, add 2 more digits a 3rd digit between 0.0 and 1.0
+   typewords         red, blue, green...
+   currentcolor:         takes the current color of the object mentioned 
+   background-color:       as it
+Safe fonts:
+   Arial (sans-serif)
+   Verdana (sans-serif)
+   Tahoma (sans-serif)
+   Trebuchet MS (sans-serif)
+   Times New Roman (serif)
+   Georgia (serif)
+   Garamond (serif)
+   Courier New (monospace)
+   Brush Script MT (cursive)
+Font modifiers:
+   font-family       apply th indicated font, the generics font families are called without quotes (i.e. sans-serif), the specific font families are caled in quotations (i.e. "Dejavu sans")
+   font-size: NNpx         changes the font size to the NN value
+   font-weight       changes the font boldness (1-1000) with 700 being bold
+   text align: center         align text to the center 
+   text-decoration: none         removes the underline in an "a" element (a link)
+   list-style-type: none         removes the marker in a list 
+Image modifiers
+   height:NNNpx         change the height of image to NNN, also can be used the option "auto" to keep the scale with width variations
+   width:NNNpx         change the width of image to NNN
+
+Images sources:
+   https://www.pexels.com/
+   https://pixabay.com/
+   https://unsplash.com/
+
+precedence: ID beats class, class beats type, type beats no specification
+if two declarations are in conflict, the declaration with more specifications takes precedence 
+
+Box management: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model
+   display; block:      makes an object a block
+
+   Box sizing best practice:
+      html {
+         box-sizing: border-box;          this definition allows to change the padding and border values without change the total width defined for a box or container
+      }
+      *, *:before, *:after {
+         box-sizing: inherit;
+      }
+
+   Center vertically on a inline element (span): use "line-height" instead of only "height" 
+
+   >>
+   padding-top: 16px;
+   padding-bottom: 16px;
+   padding-left: 8px;
+   padding-right: 8px; <<       could be replaced by:   >>padding: 16px 8px;<<
+
+   
+   >> margin: 0 auto;         set the box element with a specified width on the center of the page automatically
+   max-width: NNNpx;       allows to resize the box or container to the navigator width if it's smaller than NNNpx
+   display: flex;          makes the box a flex element, its content will resize as the container modifies
+   box-shadow: 0 0 8px rgba(,255,3,.1);         applies a blur shadow on the box borders, https://developer.mozilla.org/es/docs/Web/CSS/box-shadow 
+
+   
+   flex
+      for elements:
+         flex: 1                 sets flex-grow: 1, flex-shrink: 1, flex-basis: 0, or flex: 1 1 0; 
+         flex-grow: NNN;         indicates that the item has NNN times the size of the rest of elements inside that container 
+         flex-shrink: NNN;       indicates shrink rate factor (the higher the faster it shrinks), for an element not affected by shrinking, must set NNN to "0" and a basis to "auto" to make the code search for a width in the specs 
+         flex-basis: NNN;        indicates the initial flex size of an Item, in row arranged items it's the width and in a column arrangement it's the height 
+         flex: auto;             shorthand for flex: 1 1 auto; its a fully flexible element
+         flex: initial;          shorthand for flex: 0 1 auto; inflexible while there's free space in the container, allows to shrink if the container's size is lower
+         flex: none;             shorthand for flex: 0 0 auto; its a fully inflexible element
+         align-self: flex-start;       align the element in the cross axis, in a row arrangement it will be the vertical axis
+         min-width: 0;        by setting this value to 0, it tells the shrink algorithm to ignore the minimum width of an element when it's being shrinked
+         min-height: 0;       same function than previous but usable whne there's a column arrangement   
+         margin-right: auto;     allow to redistribute the blank spaces in a container with respect to the element, also can be used margin-left, top or bottom 
+      for containers:
+         flex-wrap: wrap;        if an element doesn't fit in the width of a container, it will break into a new line, the width of the elements will be respected
+         flex-direction: column;     sets the box arrangement content order in column diretion, row is the default value
+         justify-content: center;         locate the elements in the center of the main axis, in a row arrangement it will be the horizontal axis, here can be used flex-end, flex-start or similars
+         align-content: center;      if there's using wrap then new lines will be created, each line behaves as a subcontainer, this function allows to arrange all the subcontainers in the main
+         align-items: stretch;       in a row arrangement, force the elements to take the height of the subcontainer (cross axis), here can be used flex-end, flex-start or similars container to the center in this case    
+         gap: NNNem;             sets a permanent gap between the elements in the container
+
+      object-fit: ;           how to stablish an image, video or replaced element...  https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit
+   >> see another flex applications:        https://flexbox.malven.co/
+   >> interactive examples:         https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/
+   >> felxbox tricks:         https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-tricks
+      image layout with flexbox:          https://css-tricks.com/adaptive-photo-layout-with-flexbox/
+
+   XXXem       relative size unit, is XXX times the font size if its defined en the box or container (change its size if the box does)
+   XXXrem      relative size unit, is XXX times the font size of the root element (usualy html, 16px) and it's not affected by the font size defines in the box or container (doesn't change the size if the box does)
+
+   position: static;        indicates that the element doesn't have a position defined
+   position: fixed;        allows to locate a box in the screen, and it maintains there even when scrolling
+   position: relative;        allows to locate a box in with respect to the precedent element
+   position: absolute;        allows to locate a box in with respect to its parent or the "body" element if there's not parent
+      top: 0;                 
+      left: 0;                locates the box on the top- left corner of the navigator, parent or preedent element
+      right: 3em
+      bottom: 4em             locates the box 3em from the right border and 4em from the bottom border of the navigator
+   
+   If used a fixed header or footer, make sure there is space for it. Put a margin bottom or top on the body.
+
+>> try to use the minimum ammount of code to design, i.e. just have to define the margins for the top element, the following must use 0 en the top margin due to this distance was already defined in the specs of the top element.
+
+
+Java
+
+"use strict";        prevents to assign values to a function without being declarated (var, let...), must be at the beginning of the script
+
+var, let, const XXX;       a variable (var, let or const) is declared with name "XXX", a declaration is always processed at the start of the function execution
+XXX = '...';         a variable named "XXX" is assigned ()=) to a value or function (...), an assignment is processed in the order it appears       
+
+var, let, const XXX = '...' ;      a variable (var, let or const) declared with name "XXX" is assigned (=) to a value or function (...)
+avoid coding like above, try to use >>one action - one line<<
+\n       inside a string "" it wil break into a new line the following strings
+best practice: define variables with one statement separated by lines
+   let XXX = 'some1',
+      YYY = 'some2',  
+      ZZZ = 'some3';
+
+   using let allows to reassign a value previously declaratred, ie. XXX or ZZZ
+
+a = b;         assignment
+a == b;        equality
+a === b;       equality with comparison of type (string, num, etc.)
+a != b;        different than
+all comparisons returns a boolean value (true-false)
+n = n + 5;     is the same than        n += 5
+const XXX = '...'         indicates that XXX can have only a value of "..." an it cannot be changed or re-declarated
+logical operators: 
+OR: a || b;       a chain of OR (a || b || c) returns the first truthy value or the last one if no truthy value is found.
+AND: a && b;      a chain of AND (a && b && c) returns the first falsy value or the last value if none were found.
+   a && b || c && d  is the same than (a && b) || (c && d)
+NOT: !a           returns the inverse boolean value of a.
+switch(expression) {
+   case x:
+     // code block
+     break;
+   case y:
+     // code block
+     break;
+   default:
+     // code block
+ }                cycle execution, compares the value of the expression with the values of each case, in a match executes the code block of the case and then break will end the switch function, in case of no match it executes the default code block.
+
+Arithmetic operators: https://www.w3schools.com/js/js_arithmetic.asp
+                      https://www.w3schools.com/js/js_precedence.asp  (complete list)
+String methods: https://www.w3schools.com/js/js_string_methods.asp
+String reference: https://www.w3schools.com/jsref/jsref_obj_string.asp
+Avoid perform arithmetic operations with float numbers, try to multiply the numbers to make them integers, perfom the arithmetic, and divide them: https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3
+
+const name = "Chris";
+const greeting = `Hello, ${name}`;
+console.log(greeting); // "Hello, Chris"        the ${} tag allow to introduce the variable name inside the string that must use `` quotes, gives more readable
+
+
+
+
+
+
+
+
+
+
+GIT
+
+Git syntax:    program | action | destination
+               git | add | .   >>>>   git add .
+
+git status           shows status highlighting the uncommitted folders 
+git add f1.xx        add the file f1.xx to Git staging
+git status           shows commitments history 
+git commit -m "A message describing what you have done to make this snapshot different"   
+git commit        opens VS to write the commit description minding the 7 rules of thumb     
+git push        Updates remote refs using local refs, while sending objects necessary to complete the given refs.
+git clone git@github.com:USER-NAME/REPOSITORY-NAME.git      copy data from Git to the home directory, copy the SSH link from git siteu
+git remote -v        indicates the location of the repository
+git rebase -i HEAD~n       changes the commit message n commits before, change "pick" with "r", save and close the editor, next the code will show the n commits to change saving the changes ein each editor. Finally, must use "git push -f" to force the updates 
+
+
+Git commits, rules of thumb
+
+- Separate subject from body with a blank line
+- Limit the subject line to 50 characters
+- Capitalize the subject line
+- Do not end the subject line with a period
+- Use the imperative mood in the subject line
+- Wrap the body at 72 characters
+- Use the body to explain what and why vs. how
+
+Your identification has been saved in /home/lz-dev/.ssh/id_ed25519
+Your public key has been saved in /home/lz-dev/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:ponISk935ZJ7caIXFm2ulpTccsmgnfxQa0A/surIgSo kv.ramosh@gmail.com
+The key's randomart image is:
++--[ED25519 256]--+
+|                 |
+|         .       |
+|        . o      |
+|         = *     |
+|        S.# +    |
+| . ... =+/ X     |
+| .oo.oo+=.&      |
+|E.+ o +oo* .     |
+|o. . o.o+        |
++----[SHA256]-----+
+
+

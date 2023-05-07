@@ -262,14 +262,22 @@ NOT: !a           returns the inverse boolean value of a. A double NOT (!!) retu
 
 if (condition) {
    /* code to run if condition is true */
+   /* is possible to include as many operations as wanted in one if*/
+   /* code to run operation 3*/
+   /* code to run operation 4... and so on...*/
  } else if (condition){
    /* run some other code instead */
  } else {
    /* run some other code instead */
- }                                        syntax of if and nested if.
+ }                                        syntax of if and else...if.
  
 condition ? run this code : run this code instead        ternary operator, allows to write a simple if statement with less code
 
+condition1 ? run code 1:
+condition2 ? run code 2:
+condition3 ? run code 3:
+ run code 4:                  else if with ternary operator
+ 
 switch(expression) {
    case x:
      // code block;

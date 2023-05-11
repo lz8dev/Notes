@@ -82,6 +82,7 @@ boilerplate    it can be understood as a code template
       <title></title>          is the name displayed in the browsers results for searchings
    </head> 
    <body>       contains the information displayed to the user 
+      <script>"use strict"</script>       java script 
    </body>
 </html> 
 
@@ -237,8 +238,9 @@ Java
 var, let, const XXX;       a variable (var, let or const) is declared with name "XXX", a declaration is always processed at the start of the function execution
 XXX = '...';         a variable named "XXX" is assigned ()=) to a value or function (...), an assignment is processed in the order it appears       
 var, let, const XXX = '...' ;      a variable (var, let or const) declared with name "XXX" is assigned (=) to a value or function (...)
-avoid coding like above, try to use >>one action - one line<<
-\n       inside a string "" it wil break into a new line the following strings
+const cannot be redeclarated
+use >>one action - one line<<
+\n       inside a string "" it will eliminate the "n" inside the string and will be replaced with a blank square, applied to " ' "
 best practice: define variables with one statement separated by lines
    let XXX = 'some1',
       YYY = 'some2',  
@@ -253,12 +255,22 @@ a != b;        different than
 all comparisons returns a boolean value (true-false)
 n = n + 5;     is the same than        n += 5
 const XXX = '...'         indicates that XXX can have only a value of "..." an it cannot be changed or re-declarated
+a += b; >>> a = a + b;
+a *= b; >>> a = a * b;
 
 logical operators: 
 OR: a || b;       a chain of OR (a || b || c) returns the first truthy value or the last one if no truthy value is found.
 AND: a && b;      a chain of AND (a && b && c) returns the first falsy value or the last value if none were found.
      a && b || c && d  is the same than (a && b) || (c && d), & has higher precedence.
 NOT: !a           returns the inverse boolean value of a. A double NOT (!!) returns the true boolean value. This operator has the higher precedence.
+falsy values: null, undefined,  false, NaN, 0, -0, 0n, blank space " ".
+
+result = a ?? b;        is the same that        result = (a !== null && a !== undefined) ? a : b;  //Nullish coalescing operator "??": returns "a" if its defined, if not, returns "b", this is useful if "0" sould be considered a defined value
+
+xxx.toUpperCase();         convert the string in xxx variable to upper toUpperCase
+console.log(f1())          returns the result of the execution of the function f1   
+console.log(f1)            returns the code of the f1 function (the function f1 is not called due to there's no parentheses arter it)
+
 
 if (condition) {
    /* code to run if condition is true */
@@ -272,6 +284,7 @@ if (condition) {
  }                                        syntax of if and else...if.
  
 condition ? run this code : run this code instead        ternary operator, allows to write a simple if statement with less code
+      >>> cannot be used statements like 'return' inside the ternary operator due to 'return' is not an expression
 
 condition1 ? run code 1:
 condition2 ? run code 2:
@@ -289,24 +302,213 @@ switch(expression) {
      // code block;
  }                cycle execution, compares the value of the expression with the values of each case, in a match executes the code block of the case and then break will end the switch function, in case of no match it executes the default code block.
 
+
+------------
+// analogy between if and switch for range values, in switch, using logical operators is not allowed, when grade matchs a case it breaks and ends the switch function
+
+const grade = 87;                                       const grade = 87; 
+switch (true) {                                         if (grade >= 90) {
+	// If score is 90 or greater                            // If score is 90 or greater
+	case grade >= 90:                                       
+		console.log("A");                                   console.log('A');
+		break;                                            }
+	// If score is 80 or greater                            // If score is 80 - 89
+	case grade >= 80:                                    else if (grade < 90 && grade >= 80) {   
+		console.log("B");                                   console.log('B');
+		break;                                                      
+	// If score is 70 or greater                            // If score is 70 - 79
+	case grade >= 70:                                    else if (grade < 80 && grade >= 70) {
+		console.log("C");                                   console.log('C');
+		break;                                            }        
+	// If score is 60 or greater                            // If score is 60 -69
+	case grade >= 60:                                    else if (grade < 50 && grade >= 60) {
+		console.log("D");                                   console.log('D');
+		break;                                            }
+	// Anything 59 or below is failing                      // Anything 59 or below is failing
+	default:                                             else {
+		console.log("F");                                   console.log('E');
+}                                                       }
+
+let grade = 75;
+if (grade >= 90) {
+// If score is 90 or greater
+    console.log('A');
+}// If score is 80 - 89
+else if (grade < 90 && grade >= 80) { 
+    console.log('B');
+}// If score is 70 - 79
+else if (grade < 80 && grade >= 70) {
+    console.log('C');
+}// If score is 60 -69
+else if (grade < 50 && grade >= 60) {
+    console.log('D');
+}// Anything 59 or below is failing
+else {
+    console.log('E');
+}
+
+let grade = 65;
+switch (true) {
+	// If score is 90 or greater
+	case grade >= 90:
+        console.log("A");
+		break;
+	// If score is 80 or greater
+	case grade >= 80:   
+		console.log("B");
+		break;
+	case grade >= 70:
+		console.log("C");
+		break;        
+	// If score is 60 or greater
+	case grade >= 60:
+		console.log("D");
+		break;
+	// Anything 59 or below is failing
+	default:
+		console.log("F");
+}  
+
+--------------   
+   
+Functions:
+- A variable declared inside a function is only visible in that function, this is, the variable cannot be called oustside the function, in contrast, a variable declared outside can be called by any function.
+- "return" without an argument will end the function inmediately
+-  An empty function or a function with an empty return is undefined
+- 'continue' works like 'break' but it does not end the function but gets back to the initial iteration or condition
+
+function f1(){...} (function declaration)         is the same than        let f1 = function(){...}   (function expression)
+the function expression will be executed only when the code executes that line, the function declaration is available at every moment if it is not inside another function 
+
+const myText = 'I am a string';
+const newString = myText.replace('string', 'sausage');
+console.log(newString); >>> 'I am a sausage'       (function replace)
+
+const myArray = ['I', 'love', 'chocolate', 'frogs'];
+const madeAString = myArray.join(' $ ');
+console.log(madeAString); >>> 'I $ love $ chocolate $ frogs'         (function join)
+
+function random(mun = 'no value') {             //setting the mun value to 'no value' at the beggining of the function indicates that this is the default vaule until the "random" function is called with an argument that will replace it (XXX)
+   let YYY = Math.random();   //not necessary, used to view the value of Math.random stored in YYY variable
+   console.log(YYY);          //not necessary, used to view the value of Math.random stored in YYY variable
+   return Math.floor(YYY*mun); //use Math.random() instead of YYY to ignore the last two lines, Math.floor() function will round the float number to the next lower integer
+ }
+ console.log(random(XXX))     //Shows a random number between 0 and XXX (not included)      
+
+const originals = [1, 2, 3];
+const doubled = originals.map((item) => item * 2);
+console.log(doubled);          //duplicates the array values [2, 4, 6]
+
+let age = prompt("What is your age?", 18);
+function guess() {
+   let fx = (age < 18)     ?          //note that the function 'fx' is no called anywhere so it does not matter what name it has, but must to have one
+        alert("Hello!")    :
+        alert("Greetings!");
+}
+guess();
+
+------------------
+
+function checkAge(age) {
+   if (age > 18) {
+     return true;
+   }
+     return confirm('Did parents allow you?');           //confirm works pretty similar to alert
+ }
+
+ function checkAge(age) {
+   return (age > 18) ? true: confirm('Did parents allow you?');
+ }
+
+ function checkAge(age) {
+   return (age > 18) || confirm('Did parents allow you?');
+ }                                        //these are 3 ways to write the same age function using 'if', '?' and '||'
+--------------------------
+
+--------------------------
+Arrow functions: 
+
+let func = function(arg1, arg2, ..., argN) {
+   return expression;
+ };                                                is the same than           let func = (arg1, arg2, ..., argN) => expression;     (arrow function)
+
+ another example:
+ let sum = (a, b) => a + b;
+ -------------------------
+
+------------------
+function ask(question, yes, no) {                  //initial function
+   if (confirm(question)) yes()                    //note that is not necessary using curly braces
+   else no();
+ }
+  function showOk() {
+   alert( "You agreed." );
+ }
+  function showCancel() {
+   alert( "You canceled the execution." );
+ }
+  ask("Do you agree?", showOk, showCancel);        //functions showOk, showCancel are passed as arguments to the initial function
+
+  
+  function ask(question, yes, no) {                //initial function
+   if (confirm(question)) yes()
+   else no();
+ }
+  ask(                                             //inside ask is used the function expresions (anonymous functions) as callback for 'yes' and 'no' in the initial function
+   "Do you agree?",
+   function() { alert("You agreed."); },           //anonymous function only used inside this "ask"
+   function() { alert("You canceled the execution."); }
+ );                
+
+ 
+ ask = (question, yes, no) =>                 //initial function as arrow functions, the arrow function is a form of function expression, so it will be executed when its line executes (no globally visible)
+   confirm(question)     ?
+   yes()                 :
+   no()                  ;
+ 
+ ask(
+   "Do you agree?",
+   () => alert("You agreed."),
+   () => alert("You canceled the execution.")         //multiline arrow function declarations
+--------------------------
+
+
 Arithmetic operators: https://www.w3schools.com/js/js_arithmetic.asp
                       https://www.w3schools.com/js/js_precedence.asp  (complete list)
 String methods: https://www.w3schools.com/js/js_string_methods.asp
 String reference: https://www.w3schools.com/jsref/jsref_obj_string.asp
-Avoid perform arithmetic operations with float numbers, try to multiply the numbers to make them integers, perfom the arithmetic, and divide them: https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3
+Avoid perform arithmetic operations with float numbers, try to multiply the numbers to make them integers, perfom the arithmetic, and then divide them: https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3
+Using Regular Expressions (regExr): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+work in mobile enviroment:   https://developer.chrome.com/docs/devtools/device-mode/
+debugging: https://developer.chrome.com/docs/devtools/javascript/ 
+breakpoint types: https://developer.chrome.com/docs/devtools/javascript/breakpoints/
+debugger;         indicates a breakpoint in the line of code where it is written
+math operators: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math
+   Math.E >>>  euler constant
+   Math.PI >>> pi
+   Math.SQRT1_2 >>> sqrt(1/2)
+   Math.sin(), cos(), tan(), asin(), acos(), atan(), atan2() >>> Returns the value evaluated in radians, to work with grades divide the angle in radians with (Math.PI / 180) or multiply with it to transform grades into radians
+built-in objects: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 
 const name = "Chris";
 const greeting = `Hello, ${name}`;
 console.log(greeting); // "Hello, Chris"        the ${} tag allow to introduce the variable name inside the string that must use `` quotes, gives more readable
 
+let birthYear = 1948;
+let thisYear = 1965;
+let firstName = "Charles";
+let lastName = "Stevenson";
+let fullName = firstName + " " + lastName;
+let age = thisYear - birthYear;
+let greeting = `Hello! My name is ${fullName} and I am ${age} years old.`
+console.log (greeting);                                                    Sample of variable using
 
-
-
-
-
-
-
-
+Best practice: prefixes for naming functions
+showMessage(..)     // shows a message
+getAge(..)          // returns the age 
+calcSum(..)         // calculates a sum and returns the result
+createForm(..)      // creates a form 
+checkPermission(..) // checks a permission, returns true/false
 
 GIT
 
@@ -350,5 +552,4 @@ The key's randomart image is:
 |E.+ o +oo* .     |
 |o. . o.o+        |
 +----[SHA256]-----+
-
-
+LZ_DEV

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin-function-tasks</title>
+    <style>
+        body{background-color: black}
+        p{color: white}
+    </style>
+</head>
+<body>
+    <p>Java First Functions, Fundamentals part 3 in The Odin Project.</p>
+    <script>
+        let num1 = prompt('Number 1', 0),
+            num2 = prompt('Number 2', 0);
+
+        function sum(a, b) {
+            return Number(a) + Number(b);
+        }
+        alert('The sum of the numbers is: ' + sum(num1, num2));
+
+        function sum7(a) {
+            return Number(a) + 7;
+        }
+        alert('The sum of 7 and the first number is: ' + sum7(num1));
+
+        function mul(a, b) {
+            return Number(a) * Number(b);
+        }
+        alert('The product of the numbers is: ' + mul(num1 ,num2))
+        
+        let inputString = prompt('Capitalize & last letter', 'text');
+        function capitalize(text) {
+            cap0 = text.slice(1).toLowerCase();            //slice has normally 2 arguments, the first is the start position and the second is the end position, if the second is empty, it takes the rest of the string
+            cap1 = text.charAt(0).toUpperCase();    //charAt takes the character in the position indicated by the number in the argument, it seem that chaining string methods is allowed
+            return cap1.concat(cap0);               //
+        }
+        alert('The capitalized text is: ' + capitalize(inputString));
+
+        function lastLetter(text) {
+            return  text.slice(text.length - 1)     //it must have minus one (-1) position due to the first position in the string is 0
+        }
+        alert('The last character of the text is: ' + lastLetter(inputString));
+
+    </script>
+</body>
+</html>

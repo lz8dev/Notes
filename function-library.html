@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Function library example</title>
+  <style>
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+    p{
+      white-space: pre; 
+    }                     // p allows to show the outputs in separated lines
+  </style>
+  </head>
+<body>
+
+  <input class="numberInput" type="text">
+  <p></p>
+
+  <script>
+    const input = document.querySelector('.numberInput');
+    const para = document.querySelector('p');
+
+    function squared(num) {
+      return num ** 2;
+    }
+
+    function cubed(num) {
+      return num ** 3;
+    }
+
+    function factorial(num) {
+      if (num < 0) return undefined;
+      if (num === 0) return 1;
+      let x = num - 1;
+      while (x > 1) {
+        num *= x;
+        x--;
+      }
+      return num;
+    }
+
+    input.addEventListener("change", () => {        //adding the addEventListener to the "change" event makes execute the function every time that the input changes, this is, every time that the user enter a new number in the input box.
+    const num = parseFloat(input.value);        //saves the input in the "num" constant
+      if (isNaN(num)) {                        //isNaN evaluates if the variable is a number or not returning true when is not and false in the other case
+        para.textContent = "You need to enter a number!";
+      } else {
+        para.textContent = `${num} squared is ${squared(num)}. `;
+        para.appendChild(document.createTextNode('\n')); // Adds a line break element to create a new line, this is allowed by the function "p" in the style or css section
+        para.textContent += `${num} cubed is ${cubed(num)}. `;
+        para.appendChild(document.createTextNode('\n')); // Adds a line break element to create a new line, this is allowed by the function "p" in the style or css section
+        para.textContent += `${num} factorial is ${factorial(num)}. `;
+      }
+    });
+
+  </script>
+</body>
+</html>

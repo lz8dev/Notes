@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odin-function-tasks</title>
+    <style>
+        body {background-color: black};
+    </style>
+</head>
+<body>
+    <script>
+
+        let input = parseInt(prompt('Enter a number', ''));     //parseInt convert the inmput of prompt in an integer
+        
+        function fizzbuzz(num) {
+            if (num % 3 === 0 && num % 5 === 0) {               //remember the difference between comparison (===) and assignment (=)
+                return 'FizzBuzz'
+            } else if (num % 3 === 0) {
+                return 'Fizz'
+            } else if (num % 5 === 0) {
+                return 'Buzz'
+            } else {
+                return num
+            }
+        };
+
+        for (let i = 1; i <= input; i ++) {
+            console.log(fizzbuzz(i));                           //remember that the output is the variable evaluated inf fizzbuz, not the variable istelf
+        }
+
+    </script>
+</body>
+</html>

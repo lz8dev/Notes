@@ -393,11 +393,19 @@ const madeAString = myArray.join(' $ ');
 console.log(madeAString); >>> 'I $ love $ chocolate $ frogs'         (function join)
 
 function random(mun = 'no value') {             //setting the mun value to 'no value' at the beggining of the function indicates that this is the default vaule until the "random" function is called with an argument that will replace it (XXX)
-   let YYY = Math.random();   //not necessary, used to view the value of Math.random stored in YYY variable
+   let YYY = Math.random();   //not necessary, used to view the value of Math.random stored in YYY variable, Math.random will generate a random number between 0 and 1 (not included)
    console.log(YYY);          //not necessary, used to view the value of Math.random stored in YYY variable
    return Math.floor(YYY*mun); //use Math.random() instead of YYY to ignore the last two lines, Math.floor() function will round the float number to the next lower integer
  }
- console.log(random(XXX))     //Shows a random number between 0 and XXX (not included)      
+ console.log(random(XXX))     //Shows a random number between 0 and XXX (not included)    
+ 
+
+function ran (x, y) {                              //Random number function with specified limits (x-y) 
+   return Math.floor(Math.random()*(y-x+1)+x);     //The range length between the limits (y-x) is compared with the original range of Math.random() (0-1), and the upper limit is included (this is why the +1), once transformed the return of Math.random(), it moves the number inside the range of the limits by adding 'x' and then rounds the number to the lower integer with Math.floor()
+}
+let a = prompt('lower limit: ', '?');
+let b = prompt('upper limit: ', '?');
+console.log(ran(Number(a), Number(b)));            //The inputs must be converted to numbers
 
 const originals = [1, 2, 3];
 const doubled = originals.map((item) => item * 2);
@@ -476,6 +484,28 @@ function ask(question, yes, no) {                  //initial function
    () => alert("You canceled the execution.")         //multiline arrow function declarations
 --------------------------
 
+for
+if its known the number of loops to perform, use 'for' instead 'while'
+
+for (let row = 1; row <= 5; row++) {
+   a = 6 - row;
+   console.log(a);
+}                             prints the numbers from 5 (the first outpot in the console is a = 6-1 = 5) to 1 in the console
+
+let s1 = '#####';
+for (let a = 5; a >= 1; a--){
+	s2 = s1.slice(0,a); 
+    console.log(s2);
+   };                         prints a half 5x5 square made of '#' in the console, starting the first line with 5 characters
+
+let s1 = '#####';
+for (let a = 1; a < 10; a ++) {
+      b = 5 - a;
+      s2 = s1.slice(Math.abs(b));            slice will take the start ponit as the absolute value of the b substract, and slice the string s1 form b to the end (no second argument in slice).
+      console.log(s2);
+};                            prints a triangle using the previous method
+
+
 
 Arithmetic operators: https://www.w3schools.com/js/js_arithmetic.asp
                       https://www.w3schools.com/js/js_precedence.asp  (complete list)
@@ -486,7 +516,7 @@ Using Regular Expressions (regExr): https://developer.mozilla.org/en-US/docs/Web
 work in mobile enviroment:   https://developer.chrome.com/docs/devtools/device-mode/
 debugging: https://developer.chrome.com/docs/devtools/javascript/ 
 breakpoint types: https://developer.chrome.com/docs/devtools/javascript/breakpoints/
-debugger;         indicates a breakpoint in the line of code where it is written
+debugger;         indicates a breakpoint in the line of code where it is written  
 math operators: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math
    Math.E >>>  euler constant
    Math.PI >>> pi
@@ -513,6 +543,17 @@ getAge(..)          // returns the age
 calcSum(..)         // calculates a sum and returns the result
 createForm(..)      // creates a form 
 checkPermission(..) // checks a permission, returns true/false
+
+
+
+
+C++
+
+
+
+
+
+
 
 GIT
 

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the number </title>
+  <style>
+    body {
+        background-color: black;
+        color: white;        
+    }                         
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+    p{
+      white-space: pre; 
+    }                 
+  </style>
+  </head>
+<body>
+
+<h1>GUESS THE NUMBER</h1>
+
+
+<!-- PENDING!. ask the user for the limits of the range (in_min, in_max) -->
+
+<!-- 
+
+3. ask the user for an attempt (must be outside the script) 
+<h2>Enter the lower limit:</h2>
+<input type="text" id="lowerLim" value="Some text...">
+
+<h2>Enter the upper limit:</h2> 
+<input type="text" id="upperLim" value="Some text...">
+ 
+<h2>Enter your attempt:</h2> 
+<input type="text" id="userGuess" value="Some text...">
+
+-->
+
+<!-- <p id="attempts">Attempts left</p>
+<p id="guessValues">Previous guess values</p>
+<p id="gameStatus">Correct!, Wrong! or Game over!</p>
+<p id="gameHint">Too low or too high guess!</p> -->>
+
+  <script>
+    //var inMin = document.getElementById('lowerLim').textContent;
+    //var inMax = document.querySelector('.upperLim');
+    
+    //var att = document.querySelector('.attempts');
+    //var stat = document.querySelector('.gameStatus');
+    //var val = document.querySelector('.guessValues');
+    //var hint = document.querySelector('.gameHint');
+
+    let inMin = parseInt(prompt('Lower limit?: ', 0)),
+        inMax = parseInt(prompt('Upper limit?: ', 0));
+
+    //1. generate a random number in the specified range x-y (including y)
+    function rand (x, y) { 
+        return Math.floor(Math.random()*(y-x+1)+x);     
+    }
+
+    //2. store the value in the solution variable calling the rand function with the limits of the range
+    let sol = rand(inMin, inMax);
+
+    //3. ask the user for an attempt (must be outside the script)
+    //<input type="text" id="userGuess" value="Some text...">
+
+    //4. store the value in the guess variable
+    //let guess = parseInt(prompt('Type your attempt: ', 0)); 
+
+    //5. Create a variable to store the number of attempts
+    //let att = 0;
+
+    //Create variables to the outputs to user:
+    
+    let stat = 'Correct!';          //Correct!, Wrong! or Game over!
+    let val = '';
+    let hint = 'You guess the number'; //must be replaced by a newGame button in this case
+    let sub = 'Your attempts: '
+
+    //6. Checks if the attempts number < 10
+
+
+    function guessNumber (x) {
+        val = val + x + ', ';
+        stat = 'Wrong!';
+        if (x < sol) {
+            hint = 'The number is higher!';
+        } else {
+            hint = 'The number is lower!';
+        };
+        //console.log (stat);           //Correct!, Wrong! or Game over!
+        //console.log (hint);           //tells the user the position of the attempt number
+        //console.log (sub + val);      //String of attempts entered by the user
+    }
+
+    for (let att = 0; att < 10; att ++) {
+        let guess = parseInt(prompt('Type your attempt: ', 0));
+        if (guess === sol) {
+            stat = 'Correct!';
+            val = val + guess + ', ';
+            hint = 'Game over!';
+            display();
+            break;
+        } else if (att == 9) {
+                val = val + guess + ', ';
+                hint = 'Game over!';
+                display()
+                break;
+        } else {
+            guessNumber (guess);
+            display();
+        }
+    };                        
+    
+
+    function display() {
+        console.log ('--------------------'); 
+        console.log(sol);
+        console.log (stat);           //Correct!, Wrong! or Game over!
+        console.log (hint);           //tells the user the position of the attempt number
+        console.log (sub + val);      //String of attempts entered by the user   
+    }
+
+    //console.log (stat);           //Correct!, Wrong! or Game over!
+    //console.log (hint);           //tells the user the position of the attempt number
+    //console.log (sub + val);      //String of attempts entered by the user  
+
+  </script>
+</body>
+</html>

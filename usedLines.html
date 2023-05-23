@@ -80,7 +80,8 @@ boilerplate    it can be understood as a code template
    <head>         contains the meta and info about the webpage rendering on browsers, its what the browser reads in a search 
       <meta charset="utf-8">      ensures that the webpage will display special symbols and characters from different languages correctly in the browser, must be inside <head> since it's meta data
       <title></title>          is the name displayed in the browsers results for searchings
-      <style></style>          css formatting  
+      <style></style>          css formatting, or use the next line for separated CSS style and html files
+      <link rel="stylesheet" href="styles.css">       links the html document to a CSS file (styles.css is the most used name for this file), href is the location and rel indicates the relationship between the html document and the CSS file, this must be inside
    </head> 
    <body>       contains the information displayed to the user 
       <script>"use strict"</script>       java script 
@@ -99,7 +100,7 @@ boilerplate    it can be understood as a code template
 <a href="WP">text</a>        the text becomes a link that goes to WP webpage, WP could be a link to an external website (absolute link) or a link to a page in our website (relative link). Relative links must start with /, it tells to the code to search from the curent directory (/MP)
 <img src="IM">       brings an image located in the IM link, which could be an absolute or a relative link    
 <img src="IM" alt="text 1">     the alt attribute gives a description to te IM image, if it cannot be loaded, the page will show "text 1" instead
-<br>        makes the text appear in a new line n the paragraph
+<br>        makes the text appear in a new line in the paragraph
 <ul> or <ol>
    <li>Item 1</li>
    <li>Item 2</li>
@@ -108,7 +109,7 @@ boilerplate    it can be understood as a code template
 
 !     in a .html blank file, it will wirite automatically a basic boilerplate (only in VSCode)
 https://www.freeformatter.com/html-validator.html        
-<link rel="stylesheet" href="styles.css">       links the html document to a CSS file (styles.css is the most used name for this file), href is the location and rel indicates the relationship between the html document and the CSS file, this must be inside <head>
+
 
 
 
@@ -517,6 +518,7 @@ work in mobile enviroment:   https://developer.chrome.com/docs/devtools/device-m
 debugging: https://developer.chrome.com/docs/devtools/javascript/ 
 breakpoint types: https://developer.chrome.com/docs/devtools/javascript/breakpoints/
 debugger;         indicates a breakpoint in the line of code where it is written  
+error types: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors
 math operators: https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Math
    Math.E >>>  euler constant
    Math.PI >>> pi

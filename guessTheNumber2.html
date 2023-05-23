@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Guess the number </title>
+  <style>
+    body {
+        background-color: black;
+        color: white;        
+    }                         
+    input {
+      font-size: 2em;
+      margin: 10px 1px 0;
+    }
+    p{
+      white-space: pre; 
+    }                 
+  </style>
+  </head>
+<body>
+
+<h1>GUESS THE NUMBER</h1>
+<p class="intro">
+We have selected a random number between 1 and 100.<br>
+See if you can guess it in 10 turns or fewer. <br>
+We'll tell you if your guess was too high or too low.</p>
+
+<label for = "userLower">Lower limit?:</label>        <!--the labels situates on the input box left side, -->
+<input type = "number" id="userLower" name="numberL">
+<label for = "userUpper">Upper limit?:</label>
+<input type = "number" id="userUpper" name="numberU"> <br>
+<button onclick = "assignValues()">Submit</button> <br>
+<label for = "userGuess">Your attempt?:</label>
+<input type = "number" id="userGuess" name="numberG" min="15" max="25">      <!--creates an input box that allows entering only numbers, it includes stepper arrows to let the user increase and decrease between the limits given by min and max-->
+<button onclick = "cycle()">Guess!</button> <br>
+
+<p id="status">1</p>     <!--Correct  or Wrong!-->
+<p id="sub" style="display: inline;">Your attempts: <div id="values" style="display: inline;">2</div>.</p>   <!--Values entered by user, display inLine is used for that purpose-->
+<p id="hint">3</p>       <!--Lower, higher or Game over!-->
+
+     
+
+<!-- PENDING!. ask the user for the limits of the range (in_min, in_max) -->
+
+
+
+  <script> //https://github.com/mdn/learning-area/blob/main/javascript/introduction-to-js-1/first-splash/number-guessing-game.html
+    let inMin = 0,
+        inMax = 10;
+
+    function assignValues () {
+        inMin = parseInt(document.getElementById("userLower").value),
+        inMax = parseInt(document.getElementById("userUpper").value);
+        sol = rand(inMin, inMax);
+    }
+    //1. generate a random number in the specified range x-y (including y)
+
+    function rand (x, y) { 
+        return Math.floor(Math.random()*(y-x+1)+x);     
+    }
+
+    
+    //2. store the value in the solution variable calling the rand function with the limits of the range
+  
+
+    //3. ask the user for an attempt (must be outside the script)
+    //<input type="text" id="userGuess" value="Some text...">
+
+    //4. store the value in the guess variable
+    //let guess = parseInt(prompt('Type your attempt: ', 0)); 
+
+    //5. Create a variable to store the number of attempts
+    //let att = 0;
+
+    //Create variables to the outputs to user:
+    
+    let stat = 'Correct!';          //Correct!, Wrong! or Game over!
+    let val = 'Your attempts: ';
+    let hint = 'You guess the number'; //must be replaced by a newGame button in this case
+    let sub = 'Your attempts: '
+
+    //6. Checks if the attempt number is < 10
+
+
+    function guessNumber (x) {
+        val = val + x + ', ';
+        stat = 'Wrong!';
+        if (x < sol) {
+            hint = 'The number is higher!';
+        } else {
+            hint = 'The number is lower!';
+        };
+        //console.log (stat);           //Correct! or Wrong! 
+        //console.log (hint);           //lower, higher or game over!
+        //console.log (sub + val);      //String of attempts entered by the user
+    }
+
+    function cycle () {
+      let guess = parseInt(document.getElementById("userGuess").value);
+      for (let att = 0; att < 10; att ++) {
+        resetButton = document.createElement('button');
+        resetButton.textContent = 'Continue';
+        document.body.appendChild(resetButton);
+        resetButton.addEventListener('click', resetGame);
+        if (guess === sol || att == 9) { break;}
+      }
+  }                     
+    
+    function resetGame () {
+        if (guess === sol) {
+            stat = 'Correct!';
+            val = val + guess + ', ';
+            hint = 'Game over!';
+            display();           
+        } else if (att == 9) {
+                val = val + guess + ', ';
+                hint = 'Game over!';
+                display()
+        } else {
+            guessNumber (guess);
+            display();
+        }
+      }
+
+      
+    function display() {
+        console.log ('--------------------'); 
+        console.log(sol);
+        console.log (stat);           //Correct!, Wrong! or Game over!
+        console.log (hint);           //tells the user the position of the attempt number
+        console.log (val);      //String of attempts entered by the user   
+    }
+
+    //console.log (stat);           //Correct!, Wrong! or Game over!
+    //console.log (hint);           //tells the user the position of the attempt number
+    //console.log (sub + val);      //String of attempts entered by the user  
+
+  </script>    
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Loops: Task 1</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
+  <body>
+
+    <section class="preview">     // the only element in the page
+
+
+
+    </section>
+
+  </body>
+  <script>
+    const myArray = ['tomatoes', 'chick peas', 'onions', 'rice', 'black beans'];
+    const list = document.createElement('ul');      //creates an unordered list
+
+    // Add your code here
+
+    
+    for (let i = 0; i < myArray.length; i++) {
+      const item = document.createElement('li');    //crates a list item asigned to the variable 'item'
+      item.textContent = myArray[i];                //changes the content of the item with the value in the index i in each iteration
+      list.appendChild(item);                       //appends each item (li) to the list (ul) 
+    }
+   
+
+    // Don't edit the code below here!
+
+    const section = document.querySelector('section');
+    section.appendChild(list);
+  </script>
+
+</html>

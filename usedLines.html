@@ -485,10 +485,16 @@ function ask(question, yes, no) {                  //initial function
    () => alert("You canceled the execution.")         //multiline arrow function declarations
 --------------------------
 
-for
-if its known the number of loops to perform, use 'for' instead 'while'
+Loops: for - while 
+If its known the number of loops to perform, use 'for' instead 'while'
+break;         //in the line where this is inserted, the for loop breaks and continue with the next code
+continue;      //in the line where this is inserted, the current loop breaks to continue with the next iteration
 
-for (let row = 1; row <= 5; row++) {
+syntax: for(initializer; condition; final-expression) {
+   run this code
+}
+
+for (let row = 1; row <= 5; row++) {      //Note that row must be declared with let due to each time it loops, the variable is redeclared
    a = 6 - row;
    console.log(a);
 }                             prints the numbers from 5 (the first outpot in the console is a = 6-1 = 5) to 1 in the console
@@ -497,14 +503,95 @@ let s1 = '#####';
 for (let a = 5; a >= 1; a--){
 	s2 = s1.slice(0,a); 
     console.log(s2);
-   };                         prints a half 5x5 square made of '#' in the console, starting the first line with 5 characters
+   };                         //prints a half 5x5 square made of '#' in the console, starting the first line with 5 characters
 
 let s1 = '#####';
 for (let a = 1; a < 10; a ++) {
       b = 5 - a;
-      s2 = s1.slice(Math.abs(b));            slice will take the start ponit as the absolute value of the b substract, and slice the string s1 form b to the end (no second argument in slice).
+      s2 = s1.slice(Math.abs(b));            //slice will take the start ponit as the absolute value of the b substract, and slice the string s1 form b to the end (no second argument in slice).
       console.log(s2);
 };                            prints a triangle using the previous method
+
+Looping in an array
+for... of
+const cars = ["Saab", "Volvo", "BMW", "Subaru"];
+for (const car of cars) {        //Given the collection cars, get the first item in the collection and assign it to the car constant
+   console.log(car);                   //return the car constant, this will repeat until the last item of the collection is evaluated
+}
+
+The loop function above can be written using a for loop as follows:
+const cars =["Saab", "Volvo", "BMW", "Subaru"];
+for (let i = 0; i < cars.length; i++) {
+   console.log(cars[i]);
+}       
+
+And can also be written using while
+const cars =["Saab", "Volvo", "BMW", "Subaru"];
+let i = 0;           //the initializer is declared before the loop
+while (i < cars.length) {        //the loop will repeat if meets the condition iside the parenthesis
+   console.log(cars[i]);         //loop function or action 
+   i++;                          //the final-expression is defined at the end
+}
+
+Using a do... while
+const cars =["Saab", "Volvo", "BMW", "Subaru"];
+let i = 0;
+do {
+   console.log(cars[i]);
+   i++;
+} while (i < cars.length);         //the difference with for or while is that the code or function inside de curly braces will ececute at least once, then it 
+                                     starts to check the condition to continue looping
+
+const fxCars = cars.map(fx)      //map() applies the function fx to each elemento of the array cars an makes a new array with those items
+const newArray = cars.filter(fy);      //filter() creates an array called newArray, their items are only those that meets the condition given by the function fy
+
+-----------------------------------
+
+Arrays
+const cars = ["Saab", "Volvo", "BMW"];       //an array is a ordered collection of items, its a common practice to declare an array with const, with this, 
+                                               the array adquires a block scope, so cannot be called outside the function or block in which the array is declared (a block is everithing inside curly braces {})
+                                             //using const, the array cannot be reassigned, but its content can be replaced, removed or new items can be added.
+                                             //if the array is declared with var, it can be reassigned,
+cars[0] = "RAM",        //changes the first item of the cars array for RAM
+cars.push("RAM2")       //adds the item RAM2 to the array in the last index position
+cars.pop()              //removes the last item of the array, it reduces the array length by 1
+cars.unshift("RAM2")    //adds the item RAM2 to the array in the first index position, changes the index of all the other items in the array by +1
+cars.shift()            //removes the first item in the array, changes the index of all the other items in the array by -1
+delete cars[2];         //removes the item in the position 2 of the array (BMW), leaving an empty space   
+array3 = array1.concat(array2)      //array3 is now the union of the items in array1 and array2
+const cars = [
+   'Saab',
+   'Volvo',
+   'BMW'
+];                      //the array can also be written in separated lines
+cars.splice(x, y)       // takes the index x and the following y items and removes it from the cars array
+cars.slice(x, y)        // takes the items from the index x to the index y without including it, works similar than the slice method in strings and does not   
+                           changes the cars array as splice does
+cars.indexOf('Volvo')   //returns the index of the described item, in this case, 2. If there is more than one item with the same value, indexOf() will return 
+                          the index of the first element found starting from 0.
+cars.sort()             //this will sort alphabetically the items in the array
+cars.lenght             //returns the number of items in the array including the empty ones
+cars.forEach(fx)        //this will apply the function fx in each one of the items in the cars array
+const user = {Name:'Dev', Age: 29, play:'guitar'};       //the items also can be named to be called from a function, note that must be used the curly braces for 
+                                                           this method, so this is not anymore an array but an object (an array is an object with numbered index)
+user.play                                                //this returns 'play'
+Array.isArray(cars)     //this will return true if cars is an array, its useful if its needed to determine if an object is that or an array
+
+Split method
+let string = "type1 type2 : type3 type4 : type5 type6 : type7 type8"
+string.split(":", 2)       //divide the string where ":" appears putting each section in an ordered array, the number 2 indicates that it divides 2 times giving this:
+      ['type1 type2 ', ' type3 type4 ']      // it takes only the 2 first dividers ignoring the rest of the string
+
+filter method
+   //this method creates a new array filled with elements that pass a test provided by a function, it doesn´t change the array called
+const ages = [32, 33, 16, 40];
+const result = ages.filter(checkAdult);         //here the constant result will be assigned with the values that meets the conditions given by the function checkAdult
+                                                //filter will evaluate the function checkAdult on every item of the array, returning those values that meets the function
+function checkAdult(age) {                      //this function returns al the values that are equal or higher than 18
+   return age >= 18;
+}
+
+
 
 
 
@@ -512,8 +599,10 @@ Arithmetic operators: https://www.w3schools.com/js/js_arithmetic.asp
                       https://www.w3schools.com/js/js_precedence.asp  (complete list)
 String methods: https://www.w3schools.com/js/js_string_methods.asp
 String reference: https://www.w3schools.com/jsref/jsref_obj_string.asp
-Avoid perform arithmetic operations with float numbers, try to multiply the numbers to make them integers, perfom the arithmetic, and then divide them: https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3
+Avoid perform arithmetic operations with float numbers, try to multiply the numbers to make them integers, perfom the arithmetic, and then divide them: 
+   >>https://www.w3schools.com/js/tryit.asp?filename=tryjs_numbers_inaccurate3
 Using Regular Expressions (regExr): https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
+Array methods: https://www.w3schools.com/js/js_array_methods.asp
 work in mobile enviroment:   https://developer.chrome.com/docs/devtools/device-mode/
 debugging: https://developer.chrome.com/docs/devtools/javascript/ 
 breakpoint types: https://developer.chrome.com/docs/devtools/javascript/breakpoints/

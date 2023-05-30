@@ -67,7 +67,7 @@ echo abc >> t1.txt       if the file "t1" already exists, it will add the line "
 head -n 5                takes the first 5 lines in the file
 tail -n 3                takes the last 3 lines in the file
 f1 | f2      Pipe (|): It tells the shell that we want to use the output of the command on the left (f1) as the input to the command on the right (f2)
-cut -d , -f 2 f1.txt         defines the delimitation (-d) with a coma (,) takes the 2nd column (-f 2) of the file "F1"
+cut -d , -f 2 f1.txt         defines the delimitation (-d) with a comma (,) takes the 2nd column (-f 2) of the file "F1"
 uniq                    eliminate duplicated adjacent lines, if want to be used to eliminate al duplicated lines, first must be sorted
 
 
@@ -288,8 +288,9 @@ if (condition) {
    /* run some other code instead */
  }                                        syntax of if and else...if.
  
-condition ? run this code : run this code instead        ternary operator, allows to write a simple if statement with less code
+condition ? run this code : run this code instead      //ternary operator, allows to write a simple if statement with less code
       >>> cannot be used statements like 'return' inside the ternary operator due to 'return' is not an expression
+      >>>this operator requires the true and false consition to be specified correctly
 
 condition1 ? run code 1:
 condition2 ? run code 2:
@@ -525,7 +526,7 @@ for (let i = 0; i < cars.length; i++) {
    console.log(cars[i]);
 }       
 
-And can also be written using while
+And also can be written using while:
 const cars =["Saab", "Volvo", "BMW", "Subaru"];
 let i = 0;           //the initializer is declared before the loop
 while (i < cars.length) {        //the loop will repeat if meets the condition iside the parenthesis
@@ -590,7 +591,50 @@ const result = ages.filter(checkAdult);         //here the constant result will 
 function checkAdult(age) {                      //this function returns al the values that are equal or higher than 18
    return age >= 18;
 }
+------------------
 
+------------------
+Objects
+
+const person = {              //all its properties are defined inside the curly braces,  each property is separed with comma, the properties can...
+   name: ["Bob", "Smith"],    //be an array, 
+   age: 32,                   //be a string or a number,
+   bio: function () {         //or even be a function
+     console.log(`${this.name[0]} ${this.name[1]} is ${this.age} years old.`);   //the 'this' key allows to refer properties of the object that contains 
+                                                                                   the current function
+   },
+   introduceSelf: function () {
+     console.log(`Hi! I'm ${this.name[0]}.`);            //in this case, it calls the first (0) item of the array in the 'name' property 
+     console.log(`In case of emergency, contact to ${this.phones.emergency} `)         //**using the dot notation a property of an inner object can be called 
+   },
+   phones: {                  //also a property can be another object
+      phone1: 1234,           
+      phone2: 5678,
+      emergency: 9101,        //property called on **
+   },
+ };
+
+ person.phones.phone2 --> 5678         //to access a property, just type the object name and its property with the dot notation
+
+Constructor:
+
+function Kitten (name, breed, color) {       //Must start with capital letter by convention
+   this.name = name;                         //the variables of the function to evaluate are has same name of their properties
+   this.breed = breed;
+   this.color = color;
+   this.greeting = function() {              //this function takes 2 of the properties to create the message
+      console.log(`Hello, said ${this.name} the ${this.breed}.`);
+   }
+}
+
+const cat = new Kitten('Berrtie', 'Cymric', 'white');       //to create a new object with the constructor, it must be used the 'new' word followed by 
+                                                              the name of the constructor (Kitten), and as its variables, it is inserted the values for 
+                                                              each property (name, breed, color)
+const cat2 = new Kitten('Elfie', 'Aphrodite Giant', 'ginger')
+
+cat.greeting();
+cat2.greeting();
+    
 
 
 

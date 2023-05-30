@@ -1,0 +1,136 @@
+EXERCISES SOLUTIONS
+
+-------------------
+let output = document.querySelector('.output');
+output.innerHTML = '';
+
+for (let i = 10; i >= 0; i--) {         //Prints a list from 10 to 0 in a HTML page.
+	const para = document.createElement('p');         //creates a <p> element in the document in each iteration
+	i === 10 ? para.textContent = 'Countdown ' + i:
+	i === 0 ? para.textContent = 'Blast off!':
+	para.textContent = i;   
+	output.appendChild(para);           //apply format from 'output' parent to each <p> element created on each iteration
+}
+-------------------
+
+-------------------
+const people = ['Chris', 'Anne', 'Colin', 'Terri', 'Phil', 'Lola', 'Sam', 'Kay', 'Bruce'];
+
+const admitted = document.querySelector('.admitted');
+const refused = document.querySelector('.refused');
+admitted.textContent = 'Admit: ';
+refused.textContent = 'Refuse: ';
+
+
+for (const person of people){                   //determines if a person of the people array is in the admitted or refused list
+	if (person === 'Phil' || person === 'Lola') {
+		refused.textContent += `${person}, `
+	} else {
+		admitted.textContent += `${person}, `
+	}
+};
+
+ref = refused.textContent;
+adm = admitted.textContent;
+refused.textContent = ref.slice(0, ref.length - 2 ) + '.';          //removes the last coma and replaces it with a period (.)
+admitted.textContent = adm.slice(0, adm.length - 2 ) + '.';
+------------------
+
+------------------
+<body>
+    <section class="preview"> </section>
+
+</body>
+
+<script>
+const myArray = ['tomatoes', 'chick peas', 'onions', 'rice', 'black beans'];
+const list = document.createElement('ul');              //creates an unordered list
+
+// Add your code here
+for (const item of myArray) {
+    const itemx = document.createElement('li');
+    itemx.textContent = item;
+    list.appendChild(itemx);                    //indicates that the 'li' element created belong to the 'ul' element 'list' 
+}
+// Don't edit the code below here!
+
+const section = document.querySelector('section');          //located in body
+section.appendChild(list);
+</script>
+------------------
+
+------------------
+
+const name = 'Mustafa';
+const para = document.createElement('p');
+para.textContent = 'NAME';
+
+const phonebook = [
+    { name : 'Chris', number : '1549' },
+    { name : 'Li Kang', number : '9634' },
+    { name : 'Anne', number : '9065' },
+    { name : 'Francesca', number : '3001' },
+    { name : 'Mustafa', number : '6888' },
+    { name : 'Tina', number : '4312' },
+    { name : 'Bert', number : '7780' },
+    { name : 'Jada', number : '2282' },
+]
+
+let i = 0;
+while (i < phonebook.length) {                        //search the name and returns the name and number that matchs              
+    if (name === phonebook[i].name) {
+    para.textContent = `Name: ${phonebook[i].name } // Number: ${phonebook[i].number}`;
+    break
+    } i++;
+}
+
+const section = document.querySelector('section');
+section.appendChild(para);
+----------------
+
+----------------
+const para = document.createElement('p');
+para.textContent = `Prime numbers: `
+
+function isPrime(num) {         //indicates if num is a prime number or not 
+  for(let i = 2; i < num; i++) {
+    if(num % i === 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+input = prompt('Enter the upper limit. ', 0)
+  for (let i = input; i >= 2; i--) {          //prints all the prime numbers from 500 to 0
+    if (isPrime(i) === true) {
+      para.textContent += i + ' - ';
+    }
+  } 
+
+para.textContent = para.textContent.slice(0, para.textContent.length -2)
+const section = document.querySelector('section');
+section.appendChild(para);
+----------------
+
+----------------
+const band = {
+    name: 'King Gizzard & The Lizard Wizard',
+    nationality: 'Australian',
+    genre: 'A LOT OF',
+    members: 7,
+    formed: 2015,
+    split: false,
+    albums: [           //note that to create an object (albums) with other objects inside, must be used the brackets []
+       {name: 'Oddments', released: 2016},          //object 1 of albums
+       {name: 'Polygonwannaland', released: 2017}, 
+       {name: 'Flying Microtonal Banana', released: 2018},
+    ]
+ }
+ 
+ let bandInfo = `${band.name} is an ${band.nationality} band active since ${band.formed}, they play ${band.genre} music releasing his first album ${band.albums[0].name} in ${band.albums[0].released}`
+ 
+ let para1 = document.createElement('p');
+ para1.textContent = bandInfo;
+ section.appendChild(para1);
+     

@@ -1,104 +1,54 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Loops: Task 3</title>
+    <style>
+      p {
+        color: purple;
+        margin: 0.5em 0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+
   <body>
-    <button id="executeButton">Execute Loop</button>
 
-    <h1>GUESS THE NUMBER</h1>
-    <p class="intro">
-    We have selected a random number between 1 and 100.<br>
-    See if you can guess it in 10 turns or fewer. <br>
-    We'll tell you if your guess was too high or too low.</p>
-
-    <label for = "userLower">Lower limit?:</label>        <!--the labels situates on the input box left side, -->
-    <input type = "number" id="userLower" name="numberL">
-    <label for = "userUpper">Upper limit?:</label>
-    <input type = "number" id="userUpper" name="numberU"> <br>
-    <button onclick = "assignValues()">Submit</button> <br>
-    <label for = "userGuess">Your attempt?:</label>
-    <input type = "number" id="userGuess" name="numberG" min="15" max="25">      <!--creates an input box that allows entering only numbers, it includes stepper arrows to let the user increase and decrease between the limits given by min and max-->
-    <button onclick = "cycle()">Guess!</button> <br>
-
-    <p id="status">1</p>     <!--Correct  or Wrong!-->
-    <p id="sub" style="display: inline;">Your attempts: <div id="values" style="display: inline;">2</div>.</p>   <!--Values entered by user, display inLine is used for that purpose-->
-    <p id="hint">3</p>       <!--Lower, higher or Game over!-->
+    <section class="preview">
 
 
-    <script>
-      const executeButton = document.getElementById('executeButton');
-      let loopIndex = 0;
 
-      executeButton.addEventListener('click', () => {
-        executeLoopIteration();
-      });
+    </section>
 
-      function executeLoopIteration() {
-        console.log('Loop iteration:', loopIndex);
-        loopIndex++;
-      }
-
-
-      let inMin = 9,
-          inMax = 15;
-
-      function assignValues () {
-          inMin = parseInt(document.getElementById("userLower").value),
-          inMax = parseInt(document.getElementById("userUpper").value);
-          sol = rand(inMin, inMax);
-      }
-      //1. generate a random number in the specified range x-y (including y)
-
-      function rand (x, y) { 
-          return Math.floor(Math.random()*(y-x+1)+x);     
-      }
-
-      function guessNumber (x) {
-        val = val + x + ', ';
-        stat = 'Wrong!';
-        if (x < sol) {
-            hint = 'The number is higher!';
-        } else {
-            hint = 'The number is lower!';
-        };
-        //console.log (stat);           //Correct! or Wrong! 
-        //console.log (hint);           //lower, higher or game over!
-        //console.log (sub + val);      //String of attempts entered by the user
-      }
-
-      function cycle () {
-          for (let att = 0; att < 10; att ++) {
-              let guess = document.getElementById("userGuess").value;
-              upButton = document.createElement('upButton');
-              upButton.textContent = 'Update try';
-              document.body.appendChild(upButton);
-            
-              if (guess === sol) {
-                  stat = 'Correct!';
-                  val = val + guess + ', ';
-                  hint = 'Game over!';
-                  display();
-                  break;
-              } else if (att == 9) {
-                      val = val + guess + ', ';
-                      hint = 'Game over!';
-                      display()
-                      break;
-              } else {
-                  guessNumber (guess);
-                  display();
-              }
-          }
-      }                     
-      
-
-      function display() {
-          console.log ('--------------------'); 
-          console.log(sol);
-          console.log (stat);           //Correct!, Wrong! or Game over!
-          console.log (hint);           //tells the user the position of the attempt number
-          console.log (sub + val);      //String of attempts entered by the user   
-      } 
-    
-
-
-    </script>
   </body>
+  <script>
+    
+    const para = document.createElement('p');
+    para.textContent = `Prime numbers: `
+
+    function isPrime(num) {
+      for(let i = 2; i < num; i++) {
+        if(num % i === 0) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+      for (let i = 500; i >= 2; i--) {
+        if (isPrime(i) === true) {
+          para.textContent += i + ' - ';
+        }
+      } 
+
+      para.textContent = para.textContent.slice(0, para.textContent.length -2)
+
+    const section = document.querySelector('section');
+    section.appendChild(para);
+  </script>
+
 </html>

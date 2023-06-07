@@ -386,6 +386,12 @@ Functions:
 function f1(){...} (function declaration)         is the same than        let f1 = function(){...}   (function expression)
 the function expression will be executed only when the code executes that line, the function declaration is available at every moment if it is not inside another function 
 
+Multiple or undefined arguments...
+function f1(a, b, ...c){...}           //this syntax allow to set any number of variables being the last one that next to the '...' (in this case 'c')
+arguments[]      //used in a function, it takes the arguments of that function an creates an array-like object, but does not have the same properties or functions
+                 than a real array (not all the array methods are applicable to arguments)
+Array.from(arguments)      //this function converts the arguments object in a real and functionally array
+
 const myText = 'I am a string';
 const newString = myText.replace('string', 'sausage');
 console.log(newString); >>> 'I am a sausage'       (function replace)
@@ -488,6 +494,7 @@ function ask(question, yes, no) {                  //initial function
 
 Loops: for - while 
 If its known the number of loops to perform, use 'for' instead 'while'
+return variable;        //if a return statement is declared inside the loop, the function will return this value and end the iterations
 break;         //in the line where this is inserted, the for loop breaks and continue with the next code
 continue;      //in the line where this is inserted, the current loop breaks to continue with the next iteration
 
@@ -519,6 +526,22 @@ const cars = ["Saab", "Volvo", "BMW", "Subaru"];
 for (const car of cars) {        //Given the collection cars, get the first item in the collection and assign it to the car constant
    console.log(car);                   //return the car constant, this will repeat until the last item of the collection is evaluated
 }
+
+Comparing elements in arrays (nested for...):
+const removeFromArray = function(array1, ...last) {      //this syntax allows any number of arguments, in this case, the first argument will be the
+                                                           reference array [] and the rest or arguments the values to remove from the reference array.
+   for (const item1 of array1) {                         //loops in the array of the first argument
+       for (const item2 of last) {                       //loops in an array created with the rest of arguments (last)
+           if (item1 === item2) {                        //compares the item of the array with each argument of the function
+               tempArray1 = array1.slice(0, array1.indexOf(item2));        
+               tempArray2 = array1.slice(array1.indexOf(item2) + 1);
+               array1 = tempArray1.concat(tempArray2);       
+           };
+       };
+   };
+   return array1;
+};
+
 
 The loop function above can be written using a for loop as follows:
 const cars =["Saab", "Volvo", "BMW", "Subaru"];
@@ -566,7 +589,7 @@ const cars = [
    'BMW'
 ];                      //the array can also be written in separated lines
 cars.splice(x, y)       // takes the index x and the following y items and removes it from the cars array
-cars.slice(x, y)        // takes the items from the index x to the index y without including it, works similar than the slice method in strings and does not   
+cars.slice(x, y)        // takes the items from the index x to the index y without including it, works similar than the splice method in strings and does not   
                            changes the cars array as splice does
 cars.indexOf('Volvo')   //returns the index of the described item, in this case, 2. If there is more than one item with the same value, indexOf() will return 
                           the index of the first element found starting from 0.
@@ -591,6 +614,14 @@ const result = ages.filter(checkAdult);         //here the constant result will 
 function checkAdult(age) {                      //this function returns al the values that are equal or higher than 18
    return age >= 18;
 }
+
+const str = "Hello, World!";
+const reversed = str.split("").reverse().join(""); //splits the string into an array of individual characters. 
+                                                     The empty string "" as argument ensures that each character is 
+                                                     treated as a separate element in the resulting array. Then reverses 
+                                                     the order of elements in the array and finally join converts the array in
+                                                     a string.
+
 ------------------
 
 ------------------

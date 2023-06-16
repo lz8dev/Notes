@@ -77,11 +77,12 @@ HTML Files
 boilerplate    it can be understood as a code template
 <!DOCTYPE html>    indicates which version of HTML shall be used to render a website
 <html lang="en">   indicates the begining and the language of the content for accessibility, useful to be found by the browsers
-   <head>         contains the meta and info about the webpage rendering on browsers, its what the browser reads in a search 
+   <head>         contains the meta and info about the webpage rendering on browsers, its what the browser reads in a search
       <meta charset="utf-8">      ensures that the webpage will display special symbols and characters from different languages correctly in the browser, must be inside <head> since it's meta data
       <title></title>          is the name displayed in the browsers results for searchings
       <style></style>          css formatting, or use the next line for separated CSS style and html files
       <link rel="stylesheet" href="styles.css">       links the html document to a CSS file (styles.css is the most used name for this file), href is the location and rel indicates the relationship between the html document and the CSS file, this must be inside
+      <script src = 'script.js' defer></script>       links the html file to a javascript file (again, 'script.js' is the most used name), defer states that the script will execute only when the html code is rendered but before the start of the DOM manipulation ('DOMContentLoaded' event), defer must be used only with external scripts.
    </head> 
    <body>       contains the information displayed to the user 
       <script>"use strict"</script>       java script 
@@ -122,6 +123,7 @@ Element definition in html to be called i the css file:
    <div class="c1">t1</div>        delcare that t1 is a type with class c1        
    <div class="c1 c2 c3">t1</div>        delcare that t1 is a type with class c1, c2 and c3 (separeted by spaces) 
    <div id="i1">t1</div>         delcare that t1 is a type with ID i1, unlike "class", a page cannot have more than one element with ID i1 (barely used)
+
 Calling elements in css:
    .c1{color: green;}         indicates that all the c1 class elements will change their color to green
    #i1{color: black;}         indicates that the element with ID i1 will change their color to black
@@ -132,13 +134,16 @@ Calling elements in css:
       width: 500px;
       margin: 0 auto;
    }              define a width for the content of the page in the center
+   Properties modifiers: https://www.w3schools.com/cssref/index.php
+
 Color formats: 
    Hexa (#RRGGBB)      #1100ff, to apply a transparency, add 2 more digits (#RRGGBBTT)
    RGB (0-255)        rgb(100, 0, 127),  to apply a transparency, add 2 more digits a 3rd digit between 0.0 and 1.0
    typewords         red, blue, green...
    currentcolor:         takes the current color of the object mentioned 
    background-color:       as it
-Safe fonts:
+
+   Safe fonts:
    Arial (sans-serif)
    Verdana (sans-serif)
    Tahoma (sans-serif)
@@ -148,13 +153,15 @@ Safe fonts:
    Garamond (serif)
    Courier New (monospace)
    Brush Script MT (cursive)
-Font modifiers:
+
+   Font modifiers:
    font-family       apply th indicated font, the generics font families are called without quotes (i.e. sans-serif), the specific font families are caled in quotations (i.e. "Dejavu sans")
    font-size: NNpx         changes the font size to the NN value
    font-weight       changes the font boldness (1-1000) with 700 being bold
    text align: center         align text to the center 
    text-decoration: none         removes the underline in an "a" element (a link)
    list-style-type: none         removes the marker in a list 
+
 Image modifiers
    height:NNNpx         change the height of image to NNN, also can be used the option "auto" to keep the scale with width variations
    width:NNNpx         change the width of image to NNN
@@ -663,13 +670,60 @@ const cat = new Kitten('Berrtie', 'Cymric', 'white');       //to create a new ob
                                                               each property (name, breed, color)
 const cat2 = new Kitten('Elfie', 'Aphrodite Giant', 'ginger')
 
-cat.greeting();
-cat2.greeting();
-    
+cat.greeting();      >>>     `Hello, said Berrtie the Cymric.` 
+cat2.greeting();     >>>     `Hello, said Elfie the Aphrodite Giant.` 
+--------------
+
+--------------
+DOM (Document Object Model)
+Allows to acces, manipulate or create elements according to their 'family tree' in the HTML document, the position in that tree is called 'node'. The relationships are parent, child and/or sibling.
+All the DOM manipulation will occur when the js file is called or when the script lines are executed, so a good practice is to locate the script execution at the end of the HTML file, when all else HTML code is executed.
 
 
+Given the following HTML node structure (*):
+   <div id="container">
+      <div class="display"></div>
+      <div class="controls"></div>
+   </div>
+
+Direct node selectors (*):
+Given  <div class="display"></div>, this node can be called with the following lines:
+   div.display
+   .display
+   #container > .display
+   div#container > div.display
+
+Relational selectors (*):
+   const container = document.querySelector('#container');        // selects the #container div
+   console.dir(container.firstElementChild);                      // selects the first child of #container => .display
+   const controls = document.querySelector('.controls');          // selects the .controls div
+   console.dir(controls.previousElementSibling);                  // selects the prior sibling => .display
+
+Query selectors:
+   element.querySelector(selector)   >>>  returns a reference to the first match of selector
+   element.querySelectorAll(selectors)   >>>  returns a “nodelist” containing references to all of the matches of the selectors
+
+Creating elements: 
+   Given: const div = document.createElement('div');   >>>   creates a new div element. Its not placed in the DOM but in the memory
+   parentNode.appendChild(childNode)      >>>   includes in the DOM the childNode as the last child of parentNode 
+   parentNode.insertBefore(newNode, referenceNode)      >>>    includes in the DOM the newNode into parentNode before referenceNode
+   parentNode.removeChild(child)      >>>   removes child from parentNode on the DOM and returns a reference to child
+
+Modifying CSS style elements:
+Given: const div = document.createElement('div');   >>>   creates a new div element, its not placed in the DOM but in the memory
+   div.style.color = 'blue';     >>>      adds the indicated style rule
+   div.style.cssText = 'color: blue; background: white;';     >>>      adds several style rules
+   div.setAttribute('style', 'color: blue; background: white;');     >>>      adds several style rules
+More DOM inline styles: https://domenlightenment.com/#6.2
+
+Modifying attributes:
+   div.setAttribute('id', 'theDiv');     >>>      if id exists, update it to 'theDiv', else create an id with value "theDiv"
+   div.getAttribute('id');     >>>      returns value of specified attribute, in this case "theDiv"
+   div.removeAttribute('id');     >>>      removes specified attribute
+More HTML attributes: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes
 
 
+--------------
 Arithmetic operators: https://www.w3schools.com/js/js_arithmetic.asp
                       https://www.w3schools.com/js/js_precedence.asp  (complete list)
 String methods: https://www.w3schools.com/js/js_string_methods.asp

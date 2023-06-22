@@ -223,6 +223,7 @@ Box management: https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_bloc
    >> interactive examples:         https://www.joshwcomeau.com/css/interactive-guide-to-flexbox/
    >> felxbox tricks:         https://css-tricks.com/snippets/css/a-guide-to-flexbox/#aa-flexbox-tricks
       image layout with flexbox:          https://css-tricks.com/adaptive-photo-layout-with-flexbox/
+      flex alignment: https://flexbox.malven.co/ 
 
    XXXem       relative size unit, is XXX times the font size if its defined en the box or container (change its size if the box does)
    XXXrem      relative size unit, is XXX times the font size of the root element (usualy html, 16px) and it's not affected by the font size defines in the box or container (doesn't change the size if the box does)
@@ -700,7 +701,7 @@ Relational selectors (*):
    console.dir(controls.previousElementSibling);                  // selects the prior sibling => .display
 
 Query selectors:
-   element.querySelector(selector)   >>>  returns a reference to the first match of selector
+   element.querySelector(selector)   >>>  returns a reference to the first match of selector, used with div, button, body (any HTML element inside <>)
    element.querySelectorAll(selectors)   >>>  returns a “nodelist” containing references to all of the matches of the selectors
 
 Creating elements: 
@@ -708,6 +709,11 @@ Creating elements:
    parentNode.appendChild(childNode)      >>>   includes in the DOM the childNode as the last child of parentNode 
    parentNode.insertBefore(newNode, referenceNode)      >>>    includes in the DOM the newNode into parentNode before referenceNode
    parentNode.removeChild(child)      >>>   removes child from parentNode on the DOM and returns a reference to child
+
+DOM events:
+   element.onclick = function;    >>>      executes the function when the element is clicked (note that function is called without '()')
+   element.addEventListener('click', function)     >>>      works as the previous line but this method allows multiple event listeners on the same element
+More DOM events: https://www.w3schools.com/jsref/dom_obj_event.asp 
 
 Modifying CSS style elements:
 Given: const div = document.createElement('div');   >>>   creates a new div element, its not placed in the DOM but in the memory

@@ -478,17 +478,17 @@ function ask(question, yes, no) {                  //initial function
   ask("Do you agree?", showOk, showCancel);        //functions showOk, showCancel are passed as arguments to the initial function
 
   
+Callback: use functions as arguments of another function
   function ask(question, yes, no) {                //initial function
    if (confirm(question)) yes()
    else no();
  }
-  ask(                                             //inside ask is used the function expresions (anonymous functions) as callback for 'yes' and 'no' in the initial function
-   "Do you agree?",
-   function() { alert("You agreed."); },           //anonymous function only used inside this "ask"
-   function() { alert("You canceled the execution."); }
- );                
+  ask(                                             //inside ask is used the function expresions (anonymous functions) as callback for 'yes' and 'no' of the initial (ask) function
+   "Do you agree?",                                //argument 'question' 
+   function() { alert("You agreed."); },           //anonymous function as the argument 'yes'
+   function() { alert("You canceled the execution."); }     //anonymous function as the argument 'no'
+ ); 
 
- 
  ask = (question, yes, no) =>                 //initial function as arrow functions, the arrow function is a form of function expression, so it will be executed when its line executes (no globally visible)
    confirm(question)     ?
    yes()                 :
@@ -498,6 +498,7 @@ function ask(question, yes, no) {                  //initial function
    "Do you agree?",
    () => alert("You agreed."),
    () => alert("You canceled the execution.")         //multiline arrow function declarations
+ )
 --------------------------
 
 Loops: for - while 
@@ -713,6 +714,16 @@ Creating elements:
 DOM events:
    element.onclick = function;    >>>      executes the function when the element is clicked (note that function is called without '()')
    element.addEventListener('click', function)     >>>      works as the previous line but this method allows multiple event listeners on the same element
+   
+   window.addEventListener(      //    the element in this case is the whole browser's window 
+      "keydown",      //the event in this case is when a key is pressed
+      (event) => {
+         const p = document.createElement("p");
+         p.textContent = `KeyboardEvent: key='${event.key}' | code='${event.code}'`;      //the output is "KeyboardEvent: key='a' | code='KeyA'" when A is pressed
+         document.getElementById("output").appendChild(p);
+         window.scrollTo(0, document.body.scrollHeight);
+      },)      //to view a detailed example of keydown event management see the "01 - JavaScript Drum Kit" exercise in repos
+
 More DOM events: https://www.w3schools.com/jsref/dom_obj_event.asp 
 
 Modifying CSS style elements:

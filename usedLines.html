@@ -562,7 +562,7 @@ for (let i = 0; i < cars.length; i++) {
 And also can be written using while:
 const cars =["Saab", "Volvo", "BMW", "Subaru"];
 let i = 0;           //the initializer is declared before the loop
-while (i < cars.length) {        //the loop will repeat if meets the condition iside the parenthesis
+while (i < cars.length) {        //the loop will repeat if meets the condition iside the parentheses
    console.log(cars[i]);         //loop function or action 
    i++;                          //the final-expression is defined at the end
 }
@@ -783,20 +783,85 @@ createForm(..)      // creates a form
 checkPermission(..) // checks a permission, returns true/false
 
 
-
-
 C++
 
 
-Phyton:
+
+
+-----------------------------------
+PHYTON:
+
+Syntax: 
+
+print('first')    ->   first           triple quotes keeps line breaks and spaces
+print('first','second','third')    ->   first second third         comma add spaces between strings
+print('first','second','third',sep=' - ')   ->   first - second - third       sep adds the characters ' - ' between strings
+\ scape character
+\n   line break
+print('one \'two\'')   ->   one 'two'   printing quotes
+print('one \\two\\')   ->   one \two\   printing backslash
+
+slice:
+list_1 = ['a', 'b', 3, True, 'last']      
+list_1[0]   ->   a
+list_1[:2]   ->   ['a', 'b']
+list_1[2:]   ->   [3, True, 'last']
+list_1[-1]   ->   'last'
+
+len(list_1)   ->   5      number of elements in the list
+list_1.append('X')   ->   ['a', 'b', 3, True, 'last', 'X']      includes the character 'X' at the end of the list
+list_1.insert(2, 'item1')   ->   ['a', 'b', 'item1', 3, True, 'last']        insert 'item1' in the third (2) position of the list 
+del list_1[1:3]   ->   ['a', True, 'last']       eliminates from the second (1) item to the third (2) item without including the fourth (3) item
+
+list_1 = list_2       same memory address for both lists, any change in list_1 affects list_2
+list_3 = list_1[:]    the memory address are different since list_3 is a copy of list_1 using slice
+
+tuple:
+t1 = (1, 2, 3, 4, 5, 6)     this kind of list (tuple) cannot be modified
+t1 = 1, 2, 3, 4, 5, 6       tuples can be wiritten without parentheses
+
+matrix:
+m1 = [[1, 2, 3],
+      [4, 5, 6],
+      [7, [8.1, 8.2, 8.3], 9]]
+print(m1[2][1][1])   ->   8.2      to call an element inside of matrices, each position must be written inside square parentheses
+
+dictionary:
+dic_1 = {1:'one', 2:'two', 3:'three'}         keys():values() -> items(), items() contains all the keys() and values()
+print(dic_1[2])   ->   two          calling element by key, 
+
+dic_2 = {'numbers':{1:'one', 2:'two', 3:'three'},
+         'chars':{'a':'A', 'b':'B', 'c':'C'},
+         'specs':{'s1':'@', 's2':'#', 's3':'$'}}
+print(dic_2['specs']['s2'])   ->   #
+print(dic_2.keys())   ->   dict_keys(['numbers', 'chars', 'specs'])
+print(dic_2['specs'].values())   ->   dict_values(['@', '#', '$'])
+
+
+n1 = 'one'
+n2 = 'two'
+print(f'first: {n1} , \ - second:{n2}')   ->   first: one , \ - second:two      inside f' ' special characters can be written without \
+
+a += b; >>> a = a + b;
+a *= b; >>> a = a * b;
+
+f1 = 666
+print(f1) -> 666
+# comment line
+True, False   ->    booleans must start with capital letter
+
+functions:
+len(f1)      characte lenght of f1
+
+f1 = 'SamplE'
+f1.lower()   ->   sample      
+f1.upper()   ->   SAMPLE
 
 
 
 
 
-
-
-
+-----------------------------------
 GIT
 
 Git syntax:    program | action | destination
@@ -811,6 +876,7 @@ git push        Updates remote refs using local refs, while sending objects nece
 git clone git@github.com:USER-NAME/REPOSITORY-NAME.git      copy data from Git to the home directory, copy the SSH link from git siteu
 git remote -v        indicates the location of the repository
 git rebase -i HEAD~n       changes the commit message n commits before, change "pick" with "r", save and close the editor, next the code will show the n commits to change saving the changes ein each editor. Finally, must use "git push -f" to force the updates 
+git init        Creates a new git repository with the current folder
 
 
 Git commits, rules of thumb
